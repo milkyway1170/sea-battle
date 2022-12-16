@@ -1,12 +1,16 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { HomePage } from './page/Home';
+import { HomePage } from './components/page/Home';
+import { GlobalStyle } from './components/page/Home/atoms/GlobalStyle';
 import RoutesList from './constants/routes';
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path={RoutesList.HomePage} element={<HomePage />} />
-    </Routes>
+    <>
+      <GlobalStyle />
+      <Routes>
+        <Route path={RoutesList.HomePage} element={<HomePage />} />
+      </Routes>
+    </>
   );
 };
