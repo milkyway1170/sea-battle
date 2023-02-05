@@ -3,6 +3,7 @@
   "include": ["src"],
   "exclude": ["node_modules", "./dist/**/*"],
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types", "src/types"],
     "composite": true,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

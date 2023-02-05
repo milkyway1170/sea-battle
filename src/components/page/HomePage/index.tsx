@@ -1,12 +1,19 @@
+import Routes from '@/constants/routes';
 import { Button, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container } from './styles';
 
 export const HomePage = () => {
+  const navigate = useNavigate();
+  const handleClick = (): void => navigate(Routes.GamePage);
+
   return (
     <Container>
       <Typography variant="h3">Добро пожаловать в игру Морской бой!</Typography>
-      <Button variant="contained">Начать игру</Button>
+      <Button onClick={handleClick} variant="contained">
+        Начать игру
+      </Button>
     </Container>
   );
 };
