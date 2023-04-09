@@ -22,6 +22,8 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.11.0",
+    "effector": "^22.5.0",
+    "effector-react": "^22.4.0",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^21.0.1",

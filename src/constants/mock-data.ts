@@ -1,0 +1,52 @@
+import { CellStatusEnum } from '@/types/enums';
+
+export const FIELDS = [
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+  [
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+    CellStatusEnum.Empty,
+  ],
+];
