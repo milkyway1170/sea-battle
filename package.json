@@ -20,6 +20,7 @@
     "@babel/runtime": "^7.20.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.11.0",
     "effector": "^22.5.0",
@@ -34,9 +35,11 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "path": "^0.12.7",
+    "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.4.5",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/react-dom": "^18.0.9",

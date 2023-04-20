@@ -1,12 +1,13 @@
+import React from 'react';
 import Routes from '@/constants/routes';
 import { Button, Typography } from '@mui/material';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container } from './styles';
 
 export const HomePage = () => {
   const navigate = useNavigate();
-  const handleClick = (): void => navigate(Routes.GamePage);
+
+  const handleClick = (): void => navigate(Routes.NamingPage);
 
   return (
     <Container>

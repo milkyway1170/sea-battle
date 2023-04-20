@@ -1,15 +1,19 @@
 import { FieldCell } from '@/components/atoms/FieldCell';
-import { $firstPlayer } from '@/models/first-player';
-import { $secondPlayer } from '@/models/second-player';
+
 import { Box, Typography } from '@mui/material';
 import { useStore } from 'effector-react';
 import React from 'react';
-import { FIELDS } from '../../../constants/mock-data';
-import { Table } from './styles';
 
-export const Field = () => {
-  const firstPlayer = useStore($firstPlayer);
-  const secondPlayer = useStore($secondPlayer);
+import { Table } from './styles';
+import { Store } from 'effector';
+import { CellStatusEnum } from '@/types/enums';
+
+export interface FieldProps {
+  $store: Store<CellStatusEnum[][]>;
+}
+
+export const Field = ({ $store }: FieldProps) => {
+  const playerField = useStore($store);
 
   return (
     <Box
@@ -21,44 +25,17 @@ export const Field = () => {
         gap: '25rem',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography>Первый игрок</Typography>
-        <Table>
-          {firstPlayer.map((feildRow) => (
-            <tr>
-              {feildRow.map((item) => (
-                <FieldCell cellStatus={item} />
+      <Table>
+        <tbody>
+          {playerField.map((feildRow, xIndex) => (
+            <tr key={xIndex}>
+              {feildRow.map((item, yIndex) => (
+                <FieldCell cellStatus={item} key={xIndex + ' ' + yIndex} />
               ))}
             </tr>
           ))}
-        </Table>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography>Второй игрок</Typography>
-        <Table>
-          {secondPlayer.map((feildRow) => (
-            <tr>
-              {feildRow.map((item) => (
-                <FieldCell cellStatus={item} />
-              ))}
-            </tr>
-          ))}
-        </Table>
-      </Box>
+        </tbody>
+      </Table>
     </Box>
   );
 };
