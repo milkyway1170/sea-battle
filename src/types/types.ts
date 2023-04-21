@@ -3,7 +3,11 @@ export interface IPlayerNames {
   secondPlayer: string;
 }
 
-export interface ISelectedShip {
+export interface IShip {
   name: string;
   length: number;
+  orientation: string;
+  isPlaced: boolean;
 }
+
+export type ISelectedShip = Omit<IShip, 'orientation'>;

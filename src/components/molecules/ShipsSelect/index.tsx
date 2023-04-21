@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { ShipItem } from '@/components/atoms/ShipItem';
+import { $shipsList } from '@/models/ships-list';
+import { useList } from 'effector-react';
 
 export const ShipsSelect = () => {
   return (
@@ -11,12 +13,9 @@ export const ShipsSelect = () => {
         gap: '0.5rem',
       }}
     >
-      <ShipItem name={'Трехпалубник 1'} length={3} />
-      <ShipItem name={'Трехпалубник 2'} length={3} />
-      <ShipItem name={'Двухпалубник 1'} length={2} />
-      <ShipItem name={'Двухпалубник 2'} length={2} />
-      <ShipItem name={'Однопалубник 1'} length={1} />
-      <ShipItem name={'Однопалубник 2'} length={1} />
+      {useList($shipsList, ({ name, length, isPlaced }, index) => (
+        <ShipItem key={index} name={name} length={length} isPlaced={isPlaced} />
+      ))}
     </Box>
   );
 };

@@ -3,16 +3,19 @@ import { Box, Typography } from '@mui/material';
 import { $selectedShip, setSelectedShip } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
 import { Colors } from '@/constants/colors';
+import { getBackgroundForSelectedShip } from '@/utils/get-background-for-selected-ship';
 
 export interface ShipItemProps {
   name: string;
   length: number;
+  isPlaced: boolean;
 }
 
-export const ShipItem = ({ name, length }: ShipItemProps) => {
+export const ShipItem = ({ name, length, isPlaced }: ShipItemProps) => {
   const selectedShip = useStore($selectedShip);
+  const isCurrentSelectedShip = selectedShip?.name == name;
 
-  const handleClick = () => setSelectedShip({ name, length });
+  const handleClick = () => setSelectedShip({ name, length, isPlaced });
 
   return (
     <Box
@@ -21,8 +24,10 @@ export const ShipItem = ({ name, length }: ShipItemProps) => {
         fontSize: '0.5rem',
         display: 'flex',
         flexDirection: 'column',
-        background:
-          selectedShip?.name == name ? Colors.CuriousBlue : Colors.Sail,
+        background: getBackgroundForSelectedShip(
+          isCurrentSelectedShip,
+          isPlaced,
+        ),
         padding: '0.5rem',
         borderRadius: '0.5rem',
       }}
