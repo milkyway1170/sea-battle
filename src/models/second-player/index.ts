@@ -1,5 +1,5 @@
-import { FIELDS } from '@/constants/mock-data';
-import { CellStatusEnum } from '@/types/enums';
+import { DEFAULT_FIELD } from '@/constants/mock-data';
+import { IFieldCell } from '@/types/types';
 import { createStore } from 'effector';
 
-export const $secondPlayer = createStore<CellStatusEnum[][]>(FIELDS);
+export const $secondPlayer = createStore<IFieldCell[]>(DEFAULT_FIELD);

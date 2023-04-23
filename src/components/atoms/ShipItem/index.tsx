@@ -4,18 +4,23 @@ import { $selectedShip, setSelectedShip } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
 import { Colors } from '@/constants/colors';
 import { getBackgroundForSelectedShip } from '@/utils/get-background-for-selected-ship';
+import { IShip } from '@/types/types';
 
-export interface ShipItemProps {
-  name: string;
-  length: number;
-  isPlaced: boolean;
-}
+export interface ShipItemProps extends IShip {}
 
-export const ShipItem = ({ name, length, isPlaced }: ShipItemProps) => {
+export const ShipItem = ({
+  name,
+  length,
+  isPlaced,
+  orientation,
+}: ShipItemProps) => {
+  console.log('name:', name, 'isPlaced:', isPlaced);
   const selectedShip = useStore($selectedShip);
   const isCurrentSelectedShip = selectedShip?.name == name;
 
-  const handleClick = () => setSelectedShip({ name, length, isPlaced });
+  const handleClick = () => {
+    if (!isPlaced) setSelectedShip({ name, length, isPlaced, orientation });
+  };
 
   return (
     <Box

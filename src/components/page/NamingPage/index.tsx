@@ -27,12 +27,7 @@ export const NamingPage = () => {
     formOptions,
   );
 
-  //   const { firstPlayer, secondPlayer } = useStore($playerNames);
-  //   const [player, setPlayer] = useState(firstPlayer);
-  //   const [showTools, setShowTools] = useState(false);
-
   const handleOpenNextPage = (data: any): void => {
-    console.log(data);
     update(data);
     navigate(Routes.LocationPage);
   };

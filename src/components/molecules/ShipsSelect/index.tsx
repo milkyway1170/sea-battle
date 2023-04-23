@@ -13,8 +13,14 @@ export const ShipsSelect = () => {
         gap: '0.5rem',
       }}
     >
-      {useList($shipsList, ({ name, length, isPlaced }, index) => (
-        <ShipItem key={index} name={name} length={length} isPlaced={isPlaced} />
+      {useList($shipsList, ({ name, length, isPlaced, orientation }, index) => (
+        <ShipItem
+          key={index}
+          name={name}
+          length={length}
+          isPlaced={isPlaced}
+          orientation={orientation}
+        />
       ))}
     </Box>
   );

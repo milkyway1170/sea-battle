@@ -1,19 +1,18 @@
 import { FieldCell } from '@/components/atoms/FieldCell';
 
 import { Box, Typography } from '@mui/material';
-import { useStore } from 'effector-react';
+import { useList, useStore } from 'effector-react';
 import React from 'react';
-
-import { Table } from './styles';
 import { Store } from 'effector';
 import { CellStatusEnum } from '@/types/enums';
+import { IFieldCell } from '@/types/types';
 
 export interface FieldProps {
-  $store: Store<CellStatusEnum[][]>;
+  $store: Store<IFieldCell[]>;
 }
 
 export const Field = ({ $store }: FieldProps) => {
-  const playerField = useStore($store);
+  // const playerField = useStore($store);
 
   return (
     <Box
@@ -22,20 +21,23 @@ export const Field = ({ $store }: FieldProps) => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '25rem',
       }}
     >
-      <Table>
-        <tbody>
-          {playerField.map((feildRow, xIndex) => (
-            <tr key={xIndex}>
-              {feildRow.map((item, yIndex) => (
-                <FieldCell cellStatus={item} key={xIndex + ' ' + yIndex} />
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(6, 2rem)',
+        }}
+      >
+        {useList($store, (item) => (
+          <FieldCell
+            cellStatus={item.cellStatus}
+            key={item.position.x + ' ' + item.position.y}
+            isSetStatus={item.cellStatus === CellStatusEnum.AliveShip}
+            position={item.position}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

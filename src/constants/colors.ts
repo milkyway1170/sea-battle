@@ -7,4 +7,6 @@ export const Colors = {
   CuriousBlue: '#2ca3c7',
   Sail: '#a4e2f5',
   PastelGreen: '#8bed78',
+  BlizzardBlue: '#b2e5ed',
+  Thunderbird: '#D13519',
 };
