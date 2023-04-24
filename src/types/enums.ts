@@ -9,3 +9,8 @@ export enum OrientationEnum {
   Horizontal = 'Horizontal',
   Vertical = 'Vertical',
 }
+
+export enum PlayersEnum {
+  firstPlayer = 'firstPlayer',
+  secondPlayer = 'secondPlayer',
+}

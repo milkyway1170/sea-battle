@@ -8,17 +8,20 @@ import {
 } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
 import { placingOfShip, setShip } from '@/models/first-player';
+import { temporarySetShip } from '@/models/fileds';
 
 export interface FieldCellProps {
   isSetStatus: boolean;
   cellStatus: CellStatusEnum;
   position: ICoordinates;
+  fieldName: string;
 }
 
 export const FieldCell = ({
   cellStatus,
   isSetStatus,
   position,
+  fieldName,
 }: FieldCellProps) => {
   const selectedShip = useStore($selectedShip);
 
@@ -28,10 +31,11 @@ export const FieldCell = ({
 
   const handlePick = () => {
     if (selectedShip)
-      placingOfShip({
+      temporarySetShip({
         cellStatus,
         isPlaced: selectedShip.isPlaced,
         position,
+        fieldName,
         orientation: selectedShip.orientation,
         length: selectedShip.length,
       });
@@ -47,10 +51,11 @@ export const FieldCell = ({
     changeOrientationOfSelectedShip();
     console.log('after:', selectedShip);
     if (selectedShip)
-      placingOfShip({
+      temporarySetShip({
         cellStatus,
         isPlaced: selectedShip.isPlaced,
         position,
+        fieldName,
         orientation:
           selectedShip.orientation === OrientationEnum.Horizontal
             ? OrientationEnum.Vertical

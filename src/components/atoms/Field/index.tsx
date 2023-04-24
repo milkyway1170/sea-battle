@@ -8,10 +8,11 @@ import { CellStatusEnum } from '@/types/enums';
 import { IFieldCell } from '@/types/types';
 
 export interface FieldProps {
-  $store: Store<IFieldCell[]>;
+  field: IFieldCell[];
+  fieldName: string;
 }
 
-export const Field = ({ $store }: FieldProps) => {
+export const Field = ({ field, fieldName }: FieldProps) => {
   // const playerField = useStore($store);
 
   return (
@@ -29,8 +30,9 @@ export const Field = ({ $store }: FieldProps) => {
           gridTemplateColumns: 'repeat(6, 2rem)',
         }}
       >
-        {useList($store, (item) => (
+        {field.map((item) => (
           <FieldCell
+            fieldName={fieldName}
             cellStatus={item.cellStatus}
             key={item.position.x + ' ' + item.position.y}
             isSetStatus={item.cellStatus === CellStatusEnum.AliveShip}

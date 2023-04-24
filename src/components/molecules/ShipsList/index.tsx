@@ -4,7 +4,7 @@ import { ShipItem } from '@/components/atoms/ShipItem';
 import { $shipsList } from '@/models/ships-list';
 import { useList } from 'effector-react';
 
-export const ShipsSelect = () => {
+export const ShipsList = () => {
   return (
     <Box
       sx={{

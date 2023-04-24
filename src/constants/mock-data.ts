@@ -1,4 +1,4 @@
-import { CellStatusEnum, OrientationEnum } from '@/types/enums';
+import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
 
 const generateDefaultField = () => {
   const field = [];
@@ -11,12 +11,17 @@ const generateDefaultField = () => {
           x,
           y,
         },
+        shipName: null,
       });
   }
   return field;
 };
 
-export const DEFAULT_FIELD = generateDefaultField();
+export const DEFAULT_FIELDS = {
+  firstPlayerField: generateDefaultField(),
+  secondPlayerField: generateDefaultField(),
+  // currentField: PlayersEnum.firstPlayer,
+};
 
 export const DEFAULT_SHIP_LIST = [
   {

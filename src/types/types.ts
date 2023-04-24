@@ -1,4 +1,4 @@
-import { CellStatusEnum } from './enums';
+import { CellStatusEnum, PlayersEnum } from './enums';
 
 export interface IPlayerNames {
   firstPlayer: string;
@@ -23,12 +23,24 @@ export interface IFieldCell {
   cellStatus: CellStatusEnum;
   position: ICoordinates;
   isTemporary: boolean;
+  shipName: string | null;
 }
 
-export interface IPlacingOfShip {
+export interface ITemporarySetShip {
   cellStatus: CellStatusEnum;
   length: number;
   orientation: string;
   isPlaced: boolean;
   position: ICoordinates;
+  fieldName: string;
+}
+
+export interface IFields {
+  firstPlayerField: IFieldCell[];
+  secondPlayerField: IFieldCell[];
+}
+
+export interface ISetShip {
+  fieldName: string;
+  shipName: string;
 }
