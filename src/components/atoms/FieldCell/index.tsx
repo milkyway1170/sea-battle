@@ -7,8 +7,7 @@ import {
   changeOrientationOfSelectedShip,
 } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
-import { placingOfShip, setShip } from '@/models/first-player';
-import { temporarySetShip } from '@/models/fileds';
+import { setShip, temporarySetShip } from '@/models/fileds';
 
 export interface FieldCellProps {
   isSetStatus: boolean;
@@ -26,7 +25,10 @@ export const FieldCell = ({
   const selectedShip = useStore($selectedShip);
 
   const handleClick = () => {
-    if (selectedShip) setShip(selectedShip.name);
+    if (selectedShip) {
+      console.log('handleClick');
+      setShip({ shipName: selectedShip.name, fieldName });
+    }
   };
 
   const handlePick = () => {
@@ -41,15 +43,13 @@ export const FieldCell = ({
       });
   };
 
-  const handleCancelPick = () => {
-    if (!isSetStatus) console.log('handleCancelPick');
-  };
+  // const handleCancelPick = () => {
+  //   if (!isSetStatus) console.log('handleCancelPick');
+  // };
 
   const handleChangeOrientation = (event: React.MouseEvent) => {
     event.preventDefault();
-    console.log('before:', selectedShip);
     changeOrientationOfSelectedShip();
-    console.log('after:', selectedShip);
     if (selectedShip)
       temporarySetShip({
         cellStatus,
@@ -69,7 +69,7 @@ export const FieldCell = ({
       status={cellStatus}
       onClick={handleClick}
       onMouseOver={handlePick}
-      onMouseOut={handleCancelPick}
+      // onMouseOut={handleCancelPick}
       onContextMenu={handleChangeOrientation}
     />
   );

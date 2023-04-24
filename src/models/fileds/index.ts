@@ -1,10 +1,6 @@
 import { DEFAULT_FIELDS } from '@/constants/mock-data';
 import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
-import {
-  IFields,
-  ISetShip,
-  ITemporarySetShip,
-} from '@/types/types';
+import { IFields, ISetShip, ITemporarySetShip } from '@/types/types';
 import { createEvent, createStore } from 'effector';
 import { setSelectedShip } from '../selected-ship';
 import { setIsPlaced } from '../ships-list';
@@ -26,8 +22,9 @@ const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
       if (
         item.position.y >= position.y &&
         item.position.y < position.y + length &&
-        item.position.x === position.x &&
-        item.isTemporary
+        item.position.x === position.x
+        // &&
+        // !item.isTemporary
       )
         return {
           ...item,
@@ -38,8 +35,9 @@ const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
       if (
         item.position.x >= position.x &&
         item.position.x < position.x + length &&
-        item.position.y === position.y &&
-        item.isTemporary
+        item.position.y === position.y
+        // &&
+        // !item.isTemporary
       )
         return {
           ...item,
@@ -61,7 +59,9 @@ const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
 };
 
 const setShipFn = (state: IFields, data: ISetShip) => {
-  setIsPlaced(data.fieldName);
+  console.log('setShipFn', data);
+
+  setIsPlaced(data.shipName);
   setSelectedShip(null);
 
   const field =

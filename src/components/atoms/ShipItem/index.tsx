@@ -14,7 +14,6 @@ export const ShipItem = ({
   isPlaced,
   orientation,
 }: ShipItemProps) => {
-  console.log('name:', name, 'isPlaced:', isPlaced);
   const selectedShip = useStore($selectedShip);
   const isCurrentSelectedShip = selectedShip?.name == name;
 
