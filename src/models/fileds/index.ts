@@ -22,26 +22,46 @@ const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
       if (
         item.position.y >= position.y &&
         item.position.y < position.y + length &&
-        item.position.x === position.x
-        // &&
-        // !item.isTemporary
+        item.position.x === position.x &&
+        item.cellStatus !== CellStatusEnum.AliveShip &&
+        item.isTemporary
       )
         return {
           ...item,
           cellStatus: CellStatusEnum.AliveShip,
           isTemporary: true,
         };
+      if (
+        Math.abs(item.position.x - position.x) <= 1 &&
+        position.y - 1 <= item.position.y &&
+        item.position.y < position.y + length + 1
+      )
+        return {
+          ...item,
+          cellStatus: CellStatusEnum.Buffer,
+          isTemporary: true,
+        };
     } else {
       if (
         item.position.x >= position.x &&
         item.position.x < position.x + length &&
-        item.position.y === position.y
-        // &&
-        // !item.isTemporary
+        item.position.y === position.y &&
+        item.cellStatus !== CellStatusEnum.AliveShip &&
+        item.isTemporary
       )
         return {
           ...item,
           cellStatus: CellStatusEnum.AliveShip,
+          isTemporary: true,
+        };
+      if (
+        Math.abs(item.position.y - position.y) <= 1 &&
+        position.x - 1 <= item.position.x &&
+        item.position.x < position.x + length + 1
+      )
+        return {
+          ...item,
+          cellStatus: CellStatusEnum.Buffer,
           isTemporary: true,
         };
     }

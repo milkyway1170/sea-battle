@@ -1,10 +1,6 @@
 import { FieldCell } from '@/components/atoms/FieldCell';
-
-import { Box, Typography } from '@mui/material';
-import { useList, useStore } from 'effector-react';
+import { Box } from '@mui/material';
 import React from 'react';
-import { Store } from 'effector';
-import { CellStatusEnum } from '@/types/enums';
 import { IFieldCell } from '@/types/types';
 
 export interface FieldProps {
@@ -35,7 +31,6 @@ export const Field = ({ field, fieldName }: FieldProps) => {
             fieldName={fieldName}
             cellStatus={item.cellStatus}
             key={item.position.x + ' ' + item.position.y}
-            isSetStatus={item.cellStatus === CellStatusEnum.AliveShip}
             position={item.position}
           />
         ))}

@@ -9,13 +9,10 @@ import { $playerNames } from '@/models/player-names';
 import { useStore } from 'effector-react';
 import { useNavigate } from 'react-router-dom';
 import Routes from '@/constants/routes';
-import { $secondPlayer } from '@/models/second-player';
-import { $firstPlayer } from '@/models/first-player';
 
 export const LocationPage = () => {
   const navigate = useNavigate();
   const { firstPlayer, secondPlayer } = useStore($playerNames);
-  // console.log($firstPlayer);
   const [player, setPlayer] = useState(firstPlayer);
   const [showTools, setShowTools] = useState(false);
 

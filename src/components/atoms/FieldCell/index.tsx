@@ -10,7 +10,6 @@ import { useStore } from 'effector-react';
 import { setShip, temporarySetShip } from '@/models/fileds';
 
 export interface FieldCellProps {
-  isSetStatus: boolean;
   cellStatus: CellStatusEnum;
   position: ICoordinates;
   fieldName: string;
@@ -18,7 +17,6 @@ export interface FieldCellProps {
 
 export const FieldCell = ({
   cellStatus,
-  isSetStatus,
   position,
   fieldName,
 }: FieldCellProps) => {
@@ -69,7 +67,6 @@ export const FieldCell = ({
       status={cellStatus}
       onClick={handleClick}
       onMouseOver={handlePick}
-      // onMouseOut={handleCancelPick}
       onContextMenu={handleChangeOrientation}
     />
   );
