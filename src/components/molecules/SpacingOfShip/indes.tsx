@@ -14,7 +14,7 @@ export interface SpacingOfShipProps {
 export const SpacingOfShip = ({ player }: SpacingOfShipProps) => {
   const { firstPlayer } = useStore($playerNames);
   const { firstPlayerField, secondPlayerField } = useStore($fields);
-  console.log(firstPlayerField);
+
   return (
     <>
       <Typography variant="h5">Растановка {player}:</Typography>

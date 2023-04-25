@@ -26,13 +26,12 @@ export interface IFieldCell {
   shipName: string | null;
 }
 
-export interface ITemporarySetShip {
-  cellStatus: CellStatusEnum;
+export interface ITemporarySetShip extends IFieldCell {
   length: number;
   orientation: string;
   isPlaced: boolean;
-  position: ICoordinates;
   fieldName: string;
+  shipName: string;
 }
 
 export interface IFields {

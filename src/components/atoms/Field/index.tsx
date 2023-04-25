@@ -9,8 +9,6 @@ export interface FieldProps {
 }
 
 export const Field = ({ field, fieldName }: FieldProps) => {
-  // const playerField = useStore($store);
-
   return (
     <Box
       sx={{
@@ -26,12 +24,11 @@ export const Field = ({ field, fieldName }: FieldProps) => {
           gridTemplateColumns: 'repeat(6, 2rem)',
         }}
       >
-        {field.map((item) => (
+        {field.map((fieldCell) => (
           <FieldCell
+            fieldCell={fieldCell}
             fieldName={fieldName}
-            cellStatus={item.cellStatus}
-            key={item.position.x + ' ' + item.position.y}
-            position={item.position}
+            key={fieldCell.position.x + ' ' + fieldCell.position.y}
           />
         ))}
       </Box>

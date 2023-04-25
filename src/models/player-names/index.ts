@@ -2,8 +2,8 @@ import { IPlayerNames } from '@/types/types';
 import { createEvent, createStore } from 'effector';
 
 export const $playerNames = createStore<IPlayerNames>({
-  firstPlayer: '',
-  secondPlayer: '',
+  firstPlayer: 'Игрок 1',
+  secondPlayer: 'Игрок 2',
 });
 
 export const update = createEvent<IPlayerNames>();
