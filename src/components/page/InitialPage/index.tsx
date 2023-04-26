@@ -12,7 +12,7 @@ import Routes from '@/constants/routes';
 import { $shipsList, resetShipsList } from '@/models/ships-list';
 import { isAllShipsPlaced } from '@/utils/is-all-ships-placed';
 
-export const LocationPage = () => {
+export const InitialPage = () => {
   const navigate = useNavigate();
   const shipsList = useStore($shipsList);
   const { firstPlayer, secondPlayer } = useStore($playerNames);

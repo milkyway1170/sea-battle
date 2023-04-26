@@ -1,7 +1,7 @@
 const Routes = {
   HomePage: '/',
   GamePage: '/game',
-  LocationPage: '/location',
+  InitialPage: '/location',
   NamingPage: '/naming',
 };
 

@@ -1,20 +1,23 @@
 import { OrientationEnum } from '@/types/enums';
 import React from 'react';
 import { Container } from './styles';
-import { IFieldCell } from '@/types/types';
+import { IInitialFieldCell } from '@/types/types';
 import {
   $selectedShip,
   changeOrientationOfSelectedShip,
 } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
-import { setShip, temporarySetShip } from '@/models/fileds';
+import { setShip, temporarySetShip } from '@/models/initial-fileds';
 
-export interface FieldCellProps {
-  fieldCell: IFieldCell;
+export interface InitialFieldCellProps {
+  fieldCell: IInitialFieldCell;
   fieldName: string;
 }
 
-export const FieldCell = ({ fieldCell, fieldName }: FieldCellProps) => {
+export const InitialFieldCell = ({
+  fieldCell,
+  fieldName,
+}: InitialFieldCellProps) => {
   const selectedShip = useStore($selectedShip);
 
   const handleClick = () => {

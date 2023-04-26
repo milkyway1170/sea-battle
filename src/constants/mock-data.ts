@@ -1,6 +1,6 @@
 import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
 
-const generateDefaultField = () => {
+const generateDefaultInitialField = () => {
   const field = [];
   for (let x = 0; x < 6; x++) {
     for (let y = 0; y < 6; y++)
@@ -17,10 +17,29 @@ const generateDefaultField = () => {
   return field;
 };
 
-export const DEFAULT_FIELDS = {
-  firstPlayerField: generateDefaultField(),
-  secondPlayerField: generateDefaultField(),
-  // currentField: PlayersEnum.firstPlayer,
+const generateDefaultGameField = () => {
+  const field = [];
+  for (let x = 0; x < 6; x++) {
+    for (let y = 0; y < 6; y++)
+      field.push({
+        cellStatus: CellStatusEnum.Empty,
+        position: {
+          x,
+          y,
+        },
+      });
+  }
+  return field;
+};
+
+export const DEFAULT_INITIAL_FIELDS = {
+  firstPlayerField: generateDefaultInitialField(),
+  secondPlayerField: generateDefaultInitialField(),
+};
+
+export const DEFAULT_GAME_FIELDS = {
+  firstPlayerField: generateDefaultGameField(),
+  secondPlayerField: generateDefaultGameField(),
 };
 
 export const DEFAULT_SHIP_LIST = [

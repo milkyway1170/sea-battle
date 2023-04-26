@@ -4,7 +4,7 @@ import { HomePage } from './components/page/HomePage';
 import { GlobalStyle } from './components/atoms/GlobalStyle';
 import RoutesList from './constants/routes';
 import { GamePage } from './components/page/GamePage';
-import { LocationPage } from './components/page/LocationPage';
+import { InitialPage } from './components/page/InitialPage';
 import { NamingPage } from './components/page/NamingPage';
 
 export const App = () => {
@@ -13,7 +13,7 @@ export const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path={RoutesList.HomePage} element={<HomePage />} />
-        <Route path={RoutesList.LocationPage} element={<LocationPage />} />
+        <Route path={RoutesList.InitialPage} element={<InitialPage />} />
         <Route path={RoutesList.GamePage} element={<GamePage />} />
         <Route path={RoutesList.NamingPage} element={<NamingPage />} />
       </Routes>

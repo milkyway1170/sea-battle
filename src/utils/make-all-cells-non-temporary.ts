@@ -1,6 +1,8 @@
-import { IFieldCell } from '@/types/types';
+import { IInitialFieldCell } from '@/types/types';
 
-export const makeAllCellsNonTemporary = (field: IFieldCell[]): IFieldCell[] => {
+export const makeAllCellsNonTemporary = (
+  field: IInitialFieldCell[],
+): IInitialFieldCell[] => {
   return field.map((cell) => {
     return { ...cell, isTemporary: false };
   });

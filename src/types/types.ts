@@ -22,11 +22,16 @@ export interface ICoordinates {
 export interface IFieldCell {
   cellStatus: CellStatusEnum;
   position: ICoordinates;
+}
+
+export interface IInitialFieldCell extends IFieldCell {
   isTemporary: boolean;
   shipName: string | null;
 }
 
-export interface ITemporarySetShip extends IFieldCell {
+export interface IGameFieldCell extends IFieldCell {}
+
+export interface ITemporarySetShip extends IInitialFieldCell {
   length: number;
   orientation: string;
   isPlaced: boolean;
@@ -34,9 +39,14 @@ export interface ITemporarySetShip extends IFieldCell {
   shipName: string;
 }
 
-export interface IFields {
-  firstPlayerField: IFieldCell[];
-  secondPlayerField: IFieldCell[];
+export interface IInitialFields {
+  firstPlayerField: IInitialFieldCell[];
+  secondPlayerField: IInitialFieldCell[];
+}
+
+export interface IGameFields {
+  firstPlayerField: IGameFieldCell[];
+  secondPlayerField: IGameFieldCell[];
 }
 
 export interface ISetShip {

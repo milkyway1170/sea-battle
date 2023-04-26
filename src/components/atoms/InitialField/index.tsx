@@ -1,14 +1,17 @@
-import { FieldCell } from '@/components/atoms/FieldCell';
+import { InitialFieldCell } from '@/components/atoms/InitialFieldCell';
 import { Box } from '@mui/material';
 import React from 'react';
-import { IFieldCell } from '@/types/types';
+import { IInitialFieldCell } from '@/types/types';
 
-export interface FieldProps {
-  field: IFieldCell[];
+export interface InitialFieldProps {
+  field: IInitialFieldCell[];
   fieldName: string;
 }
 
-export const Field = ({ field, fieldName }: FieldProps) => {
+export const InitialField = ({
+  field,
+  fieldName,
+}: InitialFieldProps) => {
   return (
     <Box
       sx={{
@@ -25,7 +28,7 @@ export const Field = ({ field, fieldName }: FieldProps) => {
         }}
       >
         {field.map((fieldCell) => (
-          <FieldCell
+          <InitialFieldCell
             fieldCell={fieldCell}
             fieldName={fieldName}
             key={fieldCell.position.x + ' ' + fieldCell.position.y}

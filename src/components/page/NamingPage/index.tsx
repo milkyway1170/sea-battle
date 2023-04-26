@@ -29,7 +29,7 @@ export const NamingPage = () => {
 
   const handleOpenNextPage = (data: any): void => {
     update(data);
-    navigate(Routes.LocationPage);
+    navigate(Routes.InitialPage);
   };
 
   return (

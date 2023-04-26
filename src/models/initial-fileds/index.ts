@@ -1,18 +1,20 @@
-import { DEFAULT_FIELDS } from '@/constants/mock-data';
+import { DEFAULT_INITIAL_FIELDS } from '@/constants/mock-data';
 import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
-import { IFields, ISetShip, ITemporarySetShip } from '@/types/types';
+import { IInitialFields, ISetShip, ITemporarySetShip } from '@/types/types';
 import { createEvent, createStore } from 'effector';
 import { setSelectedShip } from '../selected-ship';
 import { setIsPlaced } from '../ships-list';
 import { makeAllCellsNonTemporary } from '@/utils/make-all-cells-non-temporary';
 import { isCellFree } from '@/utils/is-cell-free';
 
-export const $fields = createStore<IFields>(DEFAULT_FIELDS);
+export const $initialFields = createStore<IInitialFields>(
+  DEFAULT_INITIAL_FIELDS,
+);
 
 export const temporarySetShip = createEvent<ITemporarySetShip>();
 export const setShip = createEvent<ISetShip>();
 
-const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
+const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
   const { position, length, orientation, shipName, fieldName } = data;
 
   if (orientation === OrientationEnum.Horizontal) {
@@ -108,7 +110,7 @@ const temporarySetShipFn = (state: IFields, data: ITemporarySetShip) => {
     : { ...state, secondPlayerField: newField };
 };
 
-const setShipFn = (state: IFields, data: ISetShip) => {
+const setShipFn = (state: IInitialFields, data: ISetShip) => {
   const { firstPlayerField, secondPlayerField } = state;
 
   setIsPlaced(data.shipName);
@@ -122,5 +124,7 @@ const setShipFn = (state: IFields, data: ISetShip) => {
       };
 };
 
-$fields.on(temporarySetShip, (state, data) => temporarySetShipFn(state, data));
-$fields.on(setShip, (state, data) => setShipFn(state, data));
+$initialFields.on(temporarySetShip, (state, data) =>
+  temporarySetShipFn(state, data),
+);
+$initialFields.on(setShip, (state, data) => setShipFn(state, data));
