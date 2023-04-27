@@ -2,17 +2,16 @@ import React from 'react';
 import { Container, Form } from './styles';
 import { Header } from '@/components/atoms/Header';
 import { Footer } from '@/components/atoms/Footer';
-import { SpacingOfShip } from '@/components/molecules/SpacingOfShip/indes';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Main } from '@/components/atoms/Main';
-import { $playerNames, update } from '@/models/player-names';
-import { useStore } from 'effector-react';
+import { setPlayerNames } from '@/models/player-names';
 import { useNavigate } from 'react-router-dom';
 import Routes from '@/constants/routes';
-import { Controller } from 'react-hook-form';
 import FormField from '@/components/atoms/FormField';
 import useFormFieldsControl from '@/hooks/useFormFieldsControl';
 import { formOptions } from '@/utils/validation';
+import { IPlayerNames } from '@/types/types';
+import { setIsFirstPlayer } from '@/models/is-first-player';
 
 export interface INamingPageForm {
   firstPlayer: string;
@@ -27,8 +26,9 @@ export const NamingPage = () => {
     formOptions,
   );
 
-  const handleOpenNextPage = (data: any): void => {
-    update(data);
+  const handleOpenNextPage = (data: IPlayerNames): void => {
+    setPlayerNames(data);
+    setIsFirstPlayer(true);
     navigate(Routes.InitialPage);
   };
 

@@ -11,12 +11,13 @@ import { useNavigate } from 'react-router-dom';
 import Routes from '@/constants/routes';
 import { $shipsList, resetShipsList } from '@/models/ships-list';
 import { isAllShipsPlaced } from '@/utils/is-all-ships-placed';
+import { $isFirstPlayer, setIsFirstPlayer } from '@/models/is-first-player';
 
 export const InitialPage = () => {
   const navigate = useNavigate();
   const shipsList = useStore($shipsList);
   const { firstPlayer, secondPlayer } = useStore($playerNames);
-  const [player, setPlayer] = useState(firstPlayer);
+  const isFirstPlayer = useStore($isFirstPlayer);
   const [showTools, setShowTools] = useState(false);
 
   const handleShowTools = (): void => {
@@ -26,9 +27,9 @@ export const InitialPage = () => {
   const handleSwitchPlayer = (): void => {
     resetShipsList();
     setShowTools(!showTools);
-    if (player == firstPlayer) {
-      setPlayer(secondPlayer);
-    } else {
+    if (isFirstPlayer) setIsFirstPlayer(false);
+    else {
+      setIsFirstPlayer(true);
       navigate(Routes.GamePage);
     }
   };
@@ -39,7 +40,7 @@ export const InitialPage = () => {
       <Main>
         {showTools ? (
           <>
-            <SpacingOfShip player={player} />
+            <SpacingOfShip />
             <Button
               onClick={handleSwitchPlayer}
               variant="contained"
@@ -51,8 +52,8 @@ export const InitialPage = () => {
         ) : (
           <>
             <Typography variant="h5">
-              Игроку {player} необходимо расставить свои корабли. Второму игроку
-              следует не подсматривать.
+              Игроку {isFirstPlayer ? firstPlayer : secondPlayer} необходимо
+              расставить свои корабли. Второму игроку следует не подсматривать.
             </Typography>
             <Button onClick={handleShowTools} variant="contained">
               Приступить

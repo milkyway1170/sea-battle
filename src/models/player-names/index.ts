@@ -6,10 +6,10 @@ export const $playerNames = createStore<IPlayerNames>({
   secondPlayer: 'Игрок 2',
 });
 
-export const update = createEvent<IPlayerNames>();
+export const setPlayerNames = createEvent<IPlayerNames>();
 
-const updateStore = (data: IPlayerNames) => {
+const setPlayerNamesFn = (data: IPlayerNames) => {
   return data;
 };
 
-$playerNames.on(update, (_, data) => updateStore(data));
+$playerNames.on(setPlayerNames, (_, data) => setPlayerNamesFn(data));

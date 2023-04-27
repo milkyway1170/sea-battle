@@ -8,21 +8,19 @@ import {
 } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
 import { setShip, temporarySetShip } from '@/models/initial-fileds';
+import { $isFirstPlayer } from '@/models/is-first-player';
 
 export interface InitialFieldCellProps {
   fieldCell: IInitialFieldCell;
-  fieldName: string;
 }
 
-export const InitialFieldCell = ({
-  fieldCell,
-  fieldName,
-}: InitialFieldCellProps) => {
+export const InitialFieldCell = ({ fieldCell }: InitialFieldCellProps) => {
+  const isFirstPlayer = useStore($isFirstPlayer);
   const selectedShip = useStore($selectedShip);
 
   const handleClick = () => {
     if (selectedShip) {
-      setShip({ shipName: selectedShip.name, fieldName });
+      setShip({ shipName: selectedShip.name, isFirstPlayer });
     }
   };
 
@@ -31,7 +29,7 @@ export const InitialFieldCell = ({
       temporarySetShip({
         ...fieldCell,
         ...selectedShip,
-        fieldName,
+        isFirstPlayer,
         shipName: selectedShip.name,
       });
     }
@@ -44,7 +42,7 @@ export const InitialFieldCell = ({
       temporarySetShip({
         ...fieldCell,
         ...selectedShip,
-        fieldName,
+        isFirstPlayer,
         shipName: selectedShip.name,
         orientation:
           selectedShip.orientation === OrientationEnum.Horizontal

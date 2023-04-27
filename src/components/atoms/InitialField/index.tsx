@@ -2,16 +2,16 @@ import { InitialFieldCell } from '@/components/atoms/InitialFieldCell';
 import { Box } from '@mui/material';
 import React from 'react';
 import { IInitialFieldCell } from '@/types/types';
+import { $initialFields } from '@/models/initial-fileds';
+import { useStore } from 'effector-react';
+import { $isFirstPlayer } from '@/models/is-first-player';
 
-export interface InitialFieldProps {
-  field: IInitialFieldCell[];
-  fieldName: string;
-}
+export const InitialField = () => {
+  const isFirstPlayer = useStore($isFirstPlayer);
+  const { firstPlayerField, secondPlayerField } = useStore($initialFields);
 
-export const InitialField = ({
-  field,
-  fieldName,
-}: InitialFieldProps) => {
+  const field = isFirstPlayer ? firstPlayerField : secondPlayerField;
+
   return (
     <Box
       sx={{
@@ -30,7 +30,6 @@ export const InitialField = ({
         {field.map((fieldCell) => (
           <InitialFieldCell
             fieldCell={fieldCell}
-            fieldName={fieldName}
             key={fieldCell.position.x + ' ' + fieldCell.position.y}
           />
         ))}

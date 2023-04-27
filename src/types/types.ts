@@ -35,7 +35,7 @@ export interface ITemporarySetShip extends IInitialFieldCell {
   length: number;
   orientation: string;
   isPlaced: boolean;
-  fieldName: string;
+  isFirstPlayer: boolean;
   shipName: string;
 }
 
@@ -50,6 +50,6 @@ export interface IGameFields {
 }
 
 export interface ISetShip {
-  fieldName: string;
+  isFirstPlayer: boolean;
   shipName: string;
 }

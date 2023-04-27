@@ -15,7 +15,7 @@ export const temporarySetShip = createEvent<ITemporarySetShip>();
 export const setShip = createEvent<ISetShip>();
 
 const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
-  const { position, length, orientation, shipName, fieldName } = data;
+  const { position, length, orientation, shipName, isFirstPlayer } = data;
 
   if (orientation === OrientationEnum.Horizontal) {
     if (position.y + length > 6) return state;
@@ -23,10 +23,9 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
     if (position.x + length > 6) return state;
   }
 
-  const field =
-    fieldName === PlayersEnum.firstPlayer
-      ? state.firstPlayerField
-      : state.secondPlayerField;
+  const field = isFirstPlayer
+    ? state.firstPlayerField
+    : state.secondPlayerField;
 
   let isInvalidPosition = false;
 
@@ -58,6 +57,7 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
         }
         return {
           ...item,
+          shipName: null,
           cellStatus: CellStatusEnum.Buffer,
           isTemporary: true,
         };
@@ -89,6 +89,7 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
         }
         return {
           ...item,
+          shipName: null,
           cellStatus: CellStatusEnum.Buffer,
           isTemporary: true,
         };
@@ -105,7 +106,7 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
 
   if (isInvalidPosition) return state;
 
-  return data.fieldName === PlayersEnum.firstPlayer
+  return data.isFirstPlayer
     ? { ...state, firstPlayerField: newField }
     : { ...state, secondPlayerField: newField };
 };
@@ -116,7 +117,7 @@ const setShipFn = (state: IInitialFields, data: ISetShip) => {
   setIsPlaced(data.shipName);
   setSelectedShip(null);
 
-  return data.fieldName === PlayersEnum.firstPlayer
+  return data.isFirstPlayer
     ? { ...state, firstPlayerField: makeAllCellsNonTemporary(firstPlayerField) }
     : {
         ...state,
