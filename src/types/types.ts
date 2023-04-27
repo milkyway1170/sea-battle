@@ -27,6 +27,7 @@ export interface IFieldCell {
 export interface IInitialFieldCell extends IFieldCell {
   isTemporary: boolean;
   shipName: string | null;
+  isShooted: boolean;
 }
 
 export interface IGameFieldCell extends IFieldCell {}
@@ -52,4 +53,9 @@ export interface IGameFields {
 export interface ISetShip {
   isFirstPlayer: boolean;
   shipName: string;
+}
+
+export interface ITakeShot {
+  isFirstPlayer: boolean;
+  position: ICoordinates;
 }

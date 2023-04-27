@@ -7,6 +7,7 @@ const generateDefaultInitialField = () => {
       field.push({
         cellStatus: CellStatusEnum.Empty,
         isTemporary: false,
+        isShooted: false,
         position: {
           x,
           y,

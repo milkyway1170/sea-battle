@@ -1,11 +1,17 @@
 import { DEFAULT_INITIAL_FIELDS } from '@/constants/mock-data';
 import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
-import { IInitialFields, ISetShip, ITemporarySetShip } from '@/types/types';
+import {
+  IInitialFields,
+  ISetShip,
+  ITakeShot,
+  ITemporarySetShip,
+} from '@/types/types';
 import { createEvent, createStore } from 'effector';
 import { setSelectedShip } from '../selected-ship';
 import { setIsPlaced } from '../ships-list';
 import { makeAllCellsNonTemporary } from '@/utils/make-all-cells-non-temporary';
 import { isCellFree } from '@/utils/is-cell-free';
+import { makeAllBufferCellsEmpty } from '@/utils/make-all-buffer-cells-empty';
 
 export const $initialFields = createStore<IInitialFields>(
   DEFAULT_INITIAL_FIELDS,
@@ -13,6 +19,8 @@ export const $initialFields = createStore<IInitialFields>(
 
 export const temporarySetShip = createEvent<ITemporarySetShip>();
 export const setShip = createEvent<ISetShip>();
+export const removeBufferCells = createEvent();
+export const takeShot = createEvent<ITakeShot>();
 
 const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
   const { position, length, orientation, shipName, isFirstPlayer } = data;
@@ -125,7 +133,18 @@ const setShipFn = (state: IInitialFields, data: ISetShip) => {
       };
 };
 
+const removeBufferCellsFn = (state: IInitialFields) => {
+  return {
+    firstPlayerField: makeAllBufferCellsEmpty(state.firstPlayerField),
+    secondPlayerField: makeAllBufferCellsEmpty(state.secondPlayerField),
+  };
+};
+
+const takeShotFn = (state: IInitialFields, data: ITakeShot) => {};
+
 $initialFields.on(temporarySetShip, (state, data) =>
   temporarySetShipFn(state, data),
 );
 $initialFields.on(setShip, (state, data) => setShipFn(state, data));
+$initialFields.on(removeBufferCells, (state) => removeBufferCellsFn(state));
+$initialFields.on(takeShot, (state, data) => takeShotFn(state, data));
