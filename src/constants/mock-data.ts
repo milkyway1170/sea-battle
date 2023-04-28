@@ -1,4 +1,4 @@
-import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
+import { CellStatusEnum, OrientationEnum } from '@/types/enums';
 
 const generateDefaultInitialField = () => {
   const field = [];
@@ -38,7 +38,7 @@ export const DEFAULT_INITIAL_FIELDS = {
   secondPlayerField: generateDefaultInitialField(),
 };
 
-export const DEFAULT_GAME_FIELDS = {
+export const DEFAULT_ENEMY_FIELDS = {
   firstPlayerField: generateDefaultGameField(),
   secondPlayerField: generateDefaultGameField(),
 };

@@ -12,6 +12,7 @@ import Routes from '@/constants/routes';
 import { $shipsList, resetShipsList } from '@/models/ships-list';
 import { isAllShipsPlaced } from '@/utils/is-all-ships-placed';
 import { $isFirstPlayer, setIsFirstPlayer } from '@/models/is-first-player';
+import { removeBufferCells } from '@/models/initial-fileds';
 
 export const InitialPage = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export const InitialPage = () => {
     if (isFirstPlayer) setIsFirstPlayer(false);
     else {
       setIsFirstPlayer(true);
+      removeBufferCells();
       navigate(Routes.GamePage);
     }
   };

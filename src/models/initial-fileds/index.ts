@@ -12,6 +12,7 @@ import { setIsPlaced } from '../ships-list';
 import { makeAllCellsNonTemporary } from '@/utils/make-all-cells-non-temporary';
 import { isCellFree } from '@/utils/is-cell-free';
 import { makeAllBufferCellsEmpty } from '@/utils/make-all-buffer-cells-empty';
+import { findAndShotCell } from '@/utils/find-and-shot-cell';
 
 export const $initialFields = createStore<IInitialFields>(
   DEFAULT_INITIAL_FIELDS,
@@ -140,7 +141,20 @@ const removeBufferCellsFn = (state: IInitialFields) => {
   };
 };
 
-const takeShotFn = (state: IInitialFields, data: ITakeShot) => {};
+const takeShotFn = (
+  state: IInitialFields,
+  { isFirstPlayer, position }: ITakeShot,
+) => {
+  return isFirstPlayer
+    ? {
+        ...state,
+        firstPlayerField: findAndShotCell(state.firstPlayerField, position),
+      }
+    : {
+        ...state,
+        secondPlayerField: findAndShotCell(state.secondPlayerField, position),
+      };
+};
 
 $initialFields.on(temporarySetShip, (state, data) =>
   temporarySetShipFn(state, data),

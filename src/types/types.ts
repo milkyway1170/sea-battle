@@ -30,7 +30,7 @@ export interface IInitialFieldCell extends IFieldCell {
   isShooted: boolean;
 }
 
-export interface IGameFieldCell extends IFieldCell {}
+export interface IEnemyFieldCell extends IFieldCell {}
 
 export interface ITemporarySetShip extends IInitialFieldCell {
   length: number;
@@ -45,9 +45,9 @@ export interface IInitialFields {
   secondPlayerField: IInitialFieldCell[];
 }
 
-export interface IGameFields {
-  firstPlayerField: IGameFieldCell[];
-  secondPlayerField: IGameFieldCell[];
+export interface IEnemyFields {
+  firstPlayerField: IEnemyFieldCell[];
+  secondPlayerField: IEnemyFieldCell[];
 }
 
 export interface ISetShip {
