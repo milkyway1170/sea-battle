@@ -21,7 +21,7 @@ export const $initialFields = createStore<IInitialFields>(
 export const temporarySetShip = createEvent<ITemporarySetShip>();
 export const setShip = createEvent<ISetShip>();
 export const removeBufferCells = createEvent();
-export const takeShot = createEvent<ITakeShot>();
+export const takeShotAtInitialField = createEvent<ITakeShot>();
 
 const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
   const { position, length, orientation, shipName, isFirstPlayer } = data;
@@ -141,18 +141,18 @@ const removeBufferCellsFn = (state: IInitialFields) => {
   };
 };
 
-const takeShotFn = (
+const takeShotAtInitialFieldFn = (
   state: IInitialFields,
   { isFirstPlayer, position }: ITakeShot,
 ) => {
   return isFirstPlayer
     ? {
         ...state,
-        firstPlayerField: findAndShotCell(state.firstPlayerField, position),
+        secondPlayerField: findAndShotCell(state.secondPlayerField, position),
       }
     : {
         ...state,
-        secondPlayerField: findAndShotCell(state.secondPlayerField, position),
+        firstPlayerField: findAndShotCell(state.firstPlayerField, position),
       };
 };
 
@@ -161,4 +161,4 @@ $initialFields.on(temporarySetShip, (state, data) =>
 );
 $initialFields.on(setShip, (state, data) => setShipFn(state, data));
 $initialFields.on(removeBufferCells, (state) => removeBufferCellsFn(state));
-$initialFields.on(takeShot, (state, data) => takeShotFn(state, data));
+$initialFields.on(takeShotAtInitialField, (state, data) => takeShotAtInitialFieldFn(state, data));

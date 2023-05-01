@@ -7,7 +7,7 @@ import {
   changeOrientationOfSelectedShip,
 } from '@/models/selected-ship';
 import { useStore } from 'effector-react';
-import { setShip, temporarySetShip } from '@/models/initial-fileds';
+import { takeShotAtInitialField } from '@/models/initial-fileds';
 import { $isFirstPlayer } from '@/models/is-first-player';
 
 export interface EnemyFieldCellProps {
@@ -18,7 +18,12 @@ export const EnemyFieldCell = ({ fieldCell }: EnemyFieldCellProps) => {
   const isFirstPlayer = useStore($isFirstPlayer);
 
   const handleClick = () => {
-    
+    const result = takeShotAtInitialField({
+      isFirstPlayer,
+      position: fieldCell.position,
+    });
+    console.log(result);
+    // takeShotAtInitialField({})
   };
 
   return <Container status={fieldCell.cellStatus} onClick={handleClick} />;
