@@ -13,6 +13,7 @@ const generateDefaultInitialField = () => {
           y,
         },
         shipName: null,
+        shipLength: null,
       });
   }
   return field;
@@ -24,6 +25,7 @@ const generateDefaultGameField = () => {
     for (let y = 0; y < 6; y++)
       field.push({
         cellStatus: CellStatusEnum.Empty,
+        isShooted: false,
         position: {
           x,
           y,

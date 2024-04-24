@@ -1,4 +1,4 @@
-import { CellStatusEnum, PlayersEnum } from './enums';
+import { CellStatusEnum } from './enums';
 
 export interface IPlayerNames {
   firstPlayer: string;
@@ -28,9 +28,12 @@ export interface IInitialFieldCell extends IFieldCell {
   isTemporary: boolean;
   shipName: string | null;
   isShooted: boolean;
+  shipLength: number | null;
 }
 
-export interface IEnemyFieldCell extends IFieldCell {}
+export interface IEnemyFieldCell extends IFieldCell {
+  isShooted: boolean;
+}
 
 export interface ITemporarySetShip extends IInitialFieldCell {
   length: number;
@@ -58,4 +61,8 @@ export interface ISetShip {
 export interface ITakeShot {
   isFirstPlayer: boolean;
   position: ICoordinates;
+}
+
+export interface ITakeShotEnemyCell extends ITakeShot {
+  isShotHit: boolean;
 }

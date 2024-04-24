@@ -12,7 +12,8 @@ import { setIsPlaced } from '../ships-list';
 import { makeAllCellsNonTemporary } from '@/utils/make-all-cells-non-temporary';
 import { isCellFree } from '@/utils/is-cell-free';
 import { makeAllBufferCellsEmpty } from '@/utils/make-all-buffer-cells-empty';
-import { findAndShotCell } from '@/utils/find-and-shot-cell';
+import { findAndShotInitialCell } from '@/utils/find-and-shot-initial-cell';
+import { findCellIndex } from '@/utils/find-cell-index';
 
 export const $initialFields = createStore<IInitialFields>(
   DEFAULT_INITIAL_FIELDS,
@@ -145,15 +146,23 @@ const takeShotAtInitialFieldFn = (
   state: IInitialFields,
   { isFirstPlayer, position }: ITakeShot,
 ) => {
-  return isFirstPlayer
-    ? {
-        ...state,
-        secondPlayerField: findAndShotCell(state.secondPlayerField, position),
-      }
-    : {
-        ...state,
-        firstPlayerField: findAndShotCell(state.firstPlayerField, position),
-      };
+  if (isFirstPlayer) {
+    return {
+      ...state,
+      secondPlayerField: findAndShotInitialCell(
+        state.secondPlayerField,
+        position,
+      ),
+    };
+  } else {
+    return {
+      ...state,
+      firstPlayerField: findAndShotInitialCell(
+        state.firstPlayerField,
+        position,
+      ),
+    };
+  }
 };
 
 $initialFields.on(temporarySetShip, (state, data) =>
@@ -161,4 +170,18 @@ $initialFields.on(temporarySetShip, (state, data) =>
 );
 $initialFields.on(setShip, (state, data) => setShipFn(state, data));
 $initialFields.on(removeBufferCells, (state) => removeBufferCellsFn(state));
-$initialFields.on(takeShotAtInitialField, (state, data) => takeShotAtInitialFieldFn(state, data));
+$initialFields.on(takeShotAtInitialField, (state, data) => {
+  takeShotAtInitialFieldFn(state, data);
+});
+
+export const getInitialCell = ({ position, isFirstPlayer }: ITakeShot) => {
+  const { firstPlayerField, secondPlayerField } = $initialFields.getState();
+
+  const field = isFirstPlayer ? secondPlayerField :  firstPlayerField;
+
+  const searchedCellIndex = findCellIndex(field, position);
+  
+  if (searchedCellIndex === -1) throw new Error(`Enemy cell wasn't found`);
+
+  return field[searchedCellIndex];
+};

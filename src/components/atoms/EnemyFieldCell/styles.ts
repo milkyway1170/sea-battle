@@ -2,9 +2,16 @@ import { Colors } from '@/constants/colors';
 import { CellStatusEnum } from '@/types/enums';
 import styled from '@emotion/styled';
 
-export const Container = styled.div<{ status: CellStatusEnum }>`
+export const Container = styled.div<{
+  status: CellStatusEnum;
+  isShooted: boolean;
+}>`
   width: 2rem;
   height: 2rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
   background-color: ${(props) => {
     if (props.status === CellStatusEnum.AliveShip) return Colors.Denim;

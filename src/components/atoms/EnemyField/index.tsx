@@ -1,7 +1,6 @@
 import { EnemyFieldCell } from '@/components/atoms/EnemyFieldCell';
 import { Box } from '@mui/material';
 import React from 'react';
-import { $initialFields } from '@/models/initial-fileds';
 import { useStore } from 'effector-react';
 import { $isFirstPlayer } from '@/models/is-first-player';
 import { $enemyFields } from '@/models/enemy-fields';
@@ -10,7 +9,7 @@ export const EnemyField = () => {
   const isFirstPlayer = useStore($isFirstPlayer);
   const { firstPlayerField, secondPlayerField } = useStore($enemyFields);
 
-  const field = isFirstPlayer ? firstPlayerField : secondPlayerField;
+  const field = isFirstPlayer ?  secondPlayerField : firstPlayerField;
 
   return (
     <Box
