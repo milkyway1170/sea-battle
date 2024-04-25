@@ -14,3 +14,9 @@ export enum PlayersEnum {
   firstPlayer = 'firstPlayer',
   secondPlayer = 'secondPlayer',
 }
+
+export enum ActionTypeEnum {
+  Missed = 'Missed',
+  Slained = 'Slained',
+  Hurt = 'Hurt'
+}

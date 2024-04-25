@@ -1,4 +1,4 @@
-import { CellStatusEnum } from './enums';
+import { ActionTypeEnum, CellStatusEnum } from './enums';
 
 export interface IPlayerNames {
   firstPlayer: string;
@@ -65,4 +65,32 @@ export interface ITakeShot {
 
 export interface ITakeShotEnemyCell extends ITakeShot {
   isShotHit: boolean;
+}
+
+export interface IActionLogs {
+  firstPlayerActionLogs: IActionLog[];
+  secondPlayerActionLogs: IActionLog[];
+}
+
+export interface IActionLog {
+  position: ICoordinates;
+  actionType: ActionTypeEnum;
+  text: string;
+}
+
+export interface IAddActionLog {
+  isFirstPlayer: boolean;
+  position: ICoordinates;
+  actionType: ActionTypeEnum;
+  shipLength: number | null;
+}
+
+export interface ICheckIsShipDead {
+  isFirstPlayer: boolean;
+  shipName: string | null;
+  shipLength: number | null;
+}
+
+export interface IGetLastActionLogs {
+  actionLogs: IActionLog[];
 }

@@ -1,6 +1,7 @@
 import { DEFAULT_INITIAL_FIELDS } from '@/constants/mock-data';
 import { CellStatusEnum, OrientationEnum, PlayersEnum } from '@/types/enums';
 import {
+  ICheckIsShipDead,
   IInitialFields,
   ISetShip,
   ITakeShot,
@@ -52,6 +53,7 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
         }
         return {
           ...item,
+          shipLength: length,
           shipName,
           cellStatus: CellStatusEnum.AliveShip,
           isTemporary: true,
@@ -65,6 +67,7 @@ const temporarySetShipFn = (state: IInitialFields, data: ITemporarySetShip) => {
         if (!isCellFree(item.cellStatus, item.isTemporary)) {
           return item;
         }
+
         return {
           ...item,
           shipName: null,
@@ -177,11 +180,45 @@ $initialFields.on(takeShotAtInitialField, (state, data) => {
 export const getInitialCell = ({ position, isFirstPlayer }: ITakeShot) => {
   const { firstPlayerField, secondPlayerField } = $initialFields.getState();
 
-  const field = isFirstPlayer ? secondPlayerField :  firstPlayerField;
+  const field = isFirstPlayer ? secondPlayerField : firstPlayerField;
 
   const searchedCellIndex = findCellIndex(field, position);
-  
+
   if (searchedCellIndex === -1) throw new Error(`Enemy cell wasn't found`);
 
   return field[searchedCellIndex];
+};
+
+export const checkIsShipDead = ({
+  isFirstPlayer,
+  shipName,
+  shipLength,
+}: ICheckIsShipDead) => {
+  if (shipLength == null || shipName == null)
+    throw new Error(`Incorrect data of ship`);
+
+  const { firstPlayerField, secondPlayerField } = $initialFields.getState();
+
+  const field = isFirstPlayer ? secondPlayerField : firstPlayerField;
+
+  const slainedCells = field.filter(
+    (cell) =>
+      cell.shipName === shipName &&
+      cell.cellStatus === CellStatusEnum.SlainShip,
+  );
+
+  return slainedCells.length === shipLength;
+};
+
+export const checkIsWin = (isFirstPlayer: boolean) => {
+  const { firstPlayerField, secondPlayerField } = $initialFields.getState();
+
+  const field = isFirstPlayer ? secondPlayerField : firstPlayerField;
+
+  const slainedCells = field.filter(
+    (cell) =>
+      cell.cellStatus === CellStatusEnum.SlainShip,
+  );
+
+  return slainedCells.length === 12
 };

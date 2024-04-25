@@ -14,6 +14,8 @@ export const findAndShotInitialCell = (
   
   const isShotHit = shotedCell.cellStatus === CellStatusEnum.AliveShip;
 
+  console.log('shotedCell:', shotedCell)
+
   const newShotedCell = isShotHit
     ? { ...shotedCell, isShooted: true, cellStatus: CellStatusEnum.SlainShip }
     : { ...shotedCell, isShooted: true };

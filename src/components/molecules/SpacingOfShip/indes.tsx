@@ -1,5 +1,5 @@
 import React from 'react';
-import { InitialField } from '@/components/atoms/InitialField';
+import { InitialField } from '@/components/molecules/InitialField';
 import { Box, Typography } from '@mui/material';
 import { ShipsList } from '@/components/molecules/ShipsList';
 import { useStore } from 'effector-react';

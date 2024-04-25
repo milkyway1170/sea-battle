@@ -1,11 +1,12 @@
 import React from 'react';
-import { EnemyField } from '@/components/atoms/EnemyField';
-import { InitialField } from '@/components/atoms/InitialField';
+import { EnemyField } from '@/components/molecules/EnemyField';
+import { InitialField } from '@/components/molecules/InitialField';
 import { $isFirstPlayer } from '@/models/is-first-player';
 import { $playerNames } from '@/models/player-names';
 import { Box, Button, Typography } from '@mui/material';
 import { useStore } from 'effector-react';
 import { $canShoot } from '@/models/can-shoot';
+import { ActionLogs } from '../ActionLogs';
 
 export interface GameFieldsProps {
   onClick: () => void;
@@ -44,6 +45,7 @@ export const GameFields = ({ onClick }: GameFieldsProps) => {
             gap: '1rem',
             alignItems: 'center',
             justifyContent: 'center',
+            width: '15rem',
           }}
         >
           <Typography variant="h5">Ваше поле:</Typography>
@@ -56,11 +58,13 @@ export const GameFields = ({ onClick }: GameFieldsProps) => {
             gap: '1rem',
             alignItems: 'center',
             justifyContent: 'center',
+            width: '15rem',
           }}
         >
           <Typography variant="h5">Поле противника :</Typography>
           <EnemyField />
         </Box>
+        <ActionLogs />
       </Box>
       <Button onClick={onClick} variant="contained" disabled={canShoot}>
         Следующий игрок

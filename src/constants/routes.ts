@@ -3,6 +3,7 @@ const Routes = {
   GamePage: '/game',
   InitialPage: '/location',
   NamingPage: '/naming',
+  WinPage: '/win'
 };
 
 export default Routes;

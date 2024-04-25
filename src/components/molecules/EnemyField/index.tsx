@@ -9,7 +9,7 @@ export const EnemyField = () => {
   const isFirstPlayer = useStore($isFirstPlayer);
   const { firstPlayerField, secondPlayerField } = useStore($enemyFields);
 
-  const field = isFirstPlayer ?  secondPlayerField : firstPlayerField;
+  const field = isFirstPlayer ? secondPlayerField : firstPlayerField;
 
   return (
     <Box

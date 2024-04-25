@@ -6,6 +6,7 @@ import RoutesList from './constants/routes';
 import { GamePage } from './components/page/GamePage';
 import { InitialPage } from './components/page/InitialPage';
 import { NamingPage } from './components/page/NamingPage';
+import { WinPage } from './components/page/WinPage';
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
         <Route path={RoutesList.InitialPage} element={<InitialPage />} />
         <Route path={RoutesList.GamePage} element={<GamePage />} />
         <Route path={RoutesList.NamingPage} element={<NamingPage />} />
+        <Route path={RoutesList.WinPage} element={<WinPage />} />
       </Routes>
     </>
   );
