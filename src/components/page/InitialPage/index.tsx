@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container } from './styles';
 import { Header } from '@/components/atoms/Header';
 import { Footer } from '@/components/atoms/Footer';
-import { SpacingOfShip } from '@/components/molecules/SpacingOfShip/indes';
+import { SpacingOfShip } from '@/components/molecules/SpacingOfShip';
 import { Button, Typography } from '@mui/material';
 import { Main } from '@/components/atoms/Main';
 import { $playerNames } from '@/models/player-names';
@@ -53,7 +53,13 @@ export const InitialPage = () => {
           </>
         ) : (
           <>
-            <Typography variant="h5">
+            <Typography
+              sx={{
+                width: '50rem',
+                textAlign: 'center'
+              }}
+              variant="h5"
+            >
               Игроку {isFirstPlayer ? firstPlayer : secondPlayer} необходимо
               расставить свои корабли. Второму игроку следует не подсматривать.
             </Typography>

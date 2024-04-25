@@ -7,7 +7,7 @@ export const Container = styled.main`
   margin: 2rem;
   background: ${Colors.White};
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 2rem;

@@ -3,10 +3,11 @@ import { EnemyField } from '@/components/molecules/EnemyField';
 import { InitialField } from '@/components/molecules/InitialField';
 import { $isFirstPlayer } from '@/models/is-first-player';
 import { $playerNames } from '@/models/player-names';
-import { Box, Button, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useStore } from 'effector-react';
 import { $canShoot } from '@/models/can-shoot';
 import { ActionLogs } from '../ActionLogs';
+import { Container, FieldContainer, FieldsContainer } from './style';
 
 export interface GameFieldsProps {
   onClick: () => void;
@@ -18,57 +19,24 @@ export const GameFields = ({ onClick }: GameFieldsProps) => {
   const canShoot = useStore($canShoot);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem',
-        alignItems: 'center',
-      }}
-    >
+    <Container>
       <Typography variant="h5">
         {isFirstPlayer ? firstPlayer : secondPlayer}
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '2rem',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '15rem',
-          }}
-        >
+      <FieldsContainer>
+        <FieldContainer>
           <Typography variant="h5">Ваше поле:</Typography>
           <InitialField />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '15rem',
-          }}
-        >
+        </FieldContainer>
+        <FieldContainer>
           <Typography variant="h5">Поле противника :</Typography>
           <EnemyField />
-        </Box>
+        </FieldContainer>
         <ActionLogs />
-      </Box>
+      </FieldsContainer>
       <Button onClick={onClick} variant="contained" disabled={canShoot}>
         Следующий игрок
       </Button>
-    </Box>
+    </Container>
   );
 };

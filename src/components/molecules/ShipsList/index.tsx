@@ -1,18 +1,12 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import { ShipItem } from '@/components/atoms/ShipItem';
 import { $shipsList } from '@/models/ships-list';
 import { useList } from 'effector-react';
+import { Container } from './style';
 
 export const ShipsList = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.5rem',
-      }}
-    >
+    <Container>
       {useList($shipsList, ({ name, length, isPlaced, orientation }, index) => (
         <ShipItem
           key={index}
@@ -22,6 +16,6 @@ export const ShipsList = () => {
           orientation={orientation}
         />
       ))}
-    </Box>
+    </Container>
   );
 };

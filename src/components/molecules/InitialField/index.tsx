@@ -4,6 +4,7 @@ import React from 'react';
 import { $initialFields } from '@/models/initial-fileds';
 import { useStore } from 'effector-react';
 import { $isFirstPlayer } from '@/models/is-first-player';
+import { Container } from './style';
 
 export const InitialField = () => {
   const isFirstPlayer = useStore($isFirstPlayer);
@@ -12,14 +13,7 @@ export const InitialField = () => {
   const field = isFirstPlayer ? firstPlayerField : secondPlayerField;
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Container>
       <Box
         sx={{
           display: 'grid',
@@ -33,6 +27,6 @@ export const InitialField = () => {
           />
         ))}
       </Box>
-    </Box>
+    </Container>
   );
 };

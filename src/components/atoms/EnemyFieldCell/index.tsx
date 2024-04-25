@@ -27,7 +27,7 @@ export const EnemyFieldCell = ({ fieldCell }: EnemyFieldCellProps) => {
   const canShoot = useStore($canShoot);
 
   const handleClick = () => {
-    if (!canShoot) return;
+    if (!canShoot || fieldCell.isShooted ) return;
 
     takeShotAtInitialField({
       isFirstPlayer,
